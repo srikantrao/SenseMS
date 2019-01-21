@@ -10,36 +10,9 @@ Consulting project to show the effects of noise on a deep neural network used to
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
 
 ## Setup
-Clone repository and update python path
-```
-repo_name=Noise-DNN-And-Sensor-Efficacy # URL of your new repository
-username=ssimontacchi # Username for your personal github account
-git clone https://github.com/$username/$repo_name
-cd $repo_name
-echo "export $repo_name=${PWD}" >> ~/.bash_profile
-echo "export PYTHONPATH=$repo_name/src:${PYTHONPATH}" >> ~/.bash_profile
-source ~/.bash_profile
-```
-Create new development branch and switch onto it
-```
-branch_name=dev-readme_requisites-20180905 # Name of development branch, of the form 'dev-feature_name-date_of_creation'}}
-git checkout -b $branch_name
-```
-
-## Initial Commit
-Lets start with a blank slate: remove `.git` and re initialize the repo
-```
-cd $repo_name
-rm -rf .git   
-git init   
-git status
-```  
-You'll see a list of file, these are files that git doesn't recognize. At this point, feel free to change the directory names to match your project. i.e. change the parent directory Insight_Project_Framework and the project directory Insight_Project_Framework:
-Now commit these:
-```
-git add .
-git commit -m "Initial commit"
-git push origin $branch_name
+On AWS EC2 Ubuntu Deep Learning AMI version 20, run:
+```shell
+bash environment.sh
 ```
 
 ## Requisites
@@ -52,9 +25,9 @@ git push origin $branch_name
 - [Streamlit](streamlit.io)
 
 #### Installation
-To install the package above, pleae run:
+To install the package above, please run:
 ```shell
-pip install -r requiremnts
+pip install -r requirements
 ```
 
 ## Build Environment
