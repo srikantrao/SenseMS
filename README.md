@@ -1,5 +1,5 @@
 # Noise-DNN-And-Sensor-Efficacy
-Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. I am completing this project as an Insight Fellow, as a consultant for C. Light Technology.
+Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. I am completing this project as an Insight Fellow.
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
