@@ -1,4 +1,6 @@
 # Noise-DNN-And-Sensor-Efficacy
+*****Incomplete GitHub as I privately work with the company to ake sure that nothing deemed sensitive is released.*****
+
 Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. I am completing this project as an Insight Fellow.
 
 ## Motivation for this project format:
