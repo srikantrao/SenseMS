@@ -6,7 +6,7 @@ Since this work was part of a private Insight fellowship project, the model stru
 Eye-tracking data follows the movement of the eye: <br />
 ![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)
 
-I downsampled the eyetraces from 480 Hz down to 8 Hz to create new datasets on which to train:
+I downsampled the eyetraces from 480 Hz down to 8 Hz to create new datasets for training:
 ![Model](img/downsampling.gif)
 
 This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
