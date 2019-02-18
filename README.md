@@ -3,7 +3,7 @@
 
 Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
-![Model](img/downsampling.png)
+![Model](img/downsampling.gif)
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
