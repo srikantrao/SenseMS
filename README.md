@@ -37,17 +37,6 @@ pip install -r requirements.txt
 ```
 
 
-## Run Inference
-- Include instructions on how to run inference
-- i.e. image classification on a single image for a CNN deep learning project
-```
-# Example
-
-# Step 1
-# Step 2
-```
-
-
 ## Run
 If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
 ```
@@ -64,11 +53,3 @@ python run_wavernn.py samples/LJ016-0277.wav
 # Step 1
 # Step 2
 ```
-
-## Motivation for this project format:
-- **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
-- **tests** : Put all source code for testing in an easy to find location
-- **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
-- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
-- **build** : Include scripts that automate building of a standalone environment
-- **static** : Any images or content to include in the README or web framework if part of the pipeline
