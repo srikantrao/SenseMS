@@ -1,7 +1,9 @@
 # Noise-DNN-And-Sensor-Efficacy
 *****Incomplete GitHub as I privately work with the company to be sure that nothing deemed sensitive is released.*****
 
-Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. I am completing this project as an Insight Fellow.
+Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
+
+![Model](img/pipeline.png)
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
@@ -10,6 +12,20 @@ Consulting project to show the effects of noise on a deep neural network used to
 - **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
 - **build** : Include scripts that automate building of a standalone environment
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
+
+This repository contains a demo of a WaveRNN-based waveform generator trained
+on 13000 spoken sentences; inference can be run on CPU or GPU using the frozen
+graph.
+
+`run_wavernn.py` takes an input WAV file, applies an FFT to produce an 80-band
+mel spectrogram, then uses the spectrogram to generate 16 kHz audio with a
+frozen WaveRNN model.
+
+`cudnn_gru.ipynb` demonstrates usage of the (poorly documented) CuDNN GRU cell
+in TensorFlow, and some of the tricks and workarounds needed to get the network
+up and running. See [this link](http://htmlpreview.github.io/?https://github.com/austinmoehle/wavernn/blob/master/cudnn_gru.html)
+for an HTML-rendered version.
+
 
 ## Setup
 On AWS EC2 Ubuntu Deep Learning AMI version 20, run:
@@ -70,25 +86,12 @@ pip install -r requirements
 # Step 2
 ```
 
-## Build Model
-- Include instructions of how to build the model
-- This can be done either locally or on the cloud
+## Run
+If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
 ```
-# Example
-
-# Step 1
-# Step 2
+python run_wavernn.py samples/LJ016-0277.wav
 ```
 
-## Serve Model
-- Include instructions of how to set up a REST or RPC endpoint
-- This is for running remote inference via a custom model
-```
-# Example
-
-# Step 1
-# Step 2
-```
 
 ## Analysis
 - Include some form of EDA (exploratory data analysis)
