@@ -25,35 +25,15 @@ frozen WaveRNN model.
 
 
 ## Setup
-On AWS EC2 Ubuntu Deep Learning AMI version 20, run:
-```shell
-bash environment.sh
+Create a virtualenv, activate then run
+```
+pip install -r requirements.txt
 ```
 
 ## Requisites
 
 - List all packages and software needed to build the environment
 - This could include cloud command line tools (i.e. gsutil), package managers (i.e. conda), etc.
-
-
-#### Installation
-To install the package above, please run:
-```shell
-pip install -r requirements
-```
-
-## Build Environment
-- Include instructions of how to launch scripts in the build subfolder
-- Build scripts can include shell scripts or python setup.py files
-- The purpose of these scripts is to build a standalone environment, for running the code in this repository
-- The environment can be for local use, or for use in a cloud environment
-- If using for a cloud environment, commands could include CLI tools from a cloud provider (i.e. gsutil from Google Cloud Platform)
-```
-# Example
-
-# Step 1
-# Step 2
-```
 
 ## Configs
 - We recommond using either .yaml or .txt for your config files, not .json
