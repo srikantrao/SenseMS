@@ -1,9 +1,9 @@
-# Noise-DNN-And-Sensor-Efficacy
-*****Incomplete GitHub as I privately work with the company to be sure that nothing deemed sensitive is released.*****
+# SenseMS
+*****Private GitHub only available to C. Light*****
 
 Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
-![Model](img/pipeline.png)
+![Model](img/downsampling.png)
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
