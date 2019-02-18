@@ -9,14 +9,6 @@ Eye-tracking data follows the movement of the eye: <br />
 I downsampled the eyetraces from 480 Hz down to 8 Hz to create new datasets on which to train:
 ![Model](img/downsampling.gif)
 
-## Motivation for this project format:
-- **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
-- **tests** : Put all source code for testing in an easy to find location
-- **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
-- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
-- **build** : Include scripts that automate building of a standalone environment
-- **static** : Any images or content to include in the README or web framework if part of the pipeline
-
 This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
 
 `logistic_tests.py`, `RF_tests.py`, and `GB_tests.py` take an input WAV file, applies an FFT to produce an 80-band
@@ -72,3 +64,11 @@ python run_wavernn.py samples/LJ016-0277.wav
 # Step 1
 # Step 2
 ```
+
+## Motivation for this project format:
+- **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
+- **tests** : Put all source code for testing in an easy to find location
+- **configs** : Enable modification of all preset variables within single directory (consisting of one or many config files for separate tasks)
+- **data** : Include example a small amount of data in the Github repository so tests can be run to validate installation
+- **build** : Include scripts that automate building of a standalone environment
+- **static** : Any images or content to include in the README or web framework if part of the pipeline
