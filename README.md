@@ -3,8 +3,11 @@
 
 Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
-![Model](img/downsampling.gif){ width=50% }
-![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif){ width=50% }
+Eye-tracking data follows the movement of the eye: <br />
+![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)
+
+I downsampled the eyetraces from 480 Hz down to 8 Hz to create new datasets on which to train:
+![Model](img/downsampling.gif)
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
