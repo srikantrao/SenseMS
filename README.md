@@ -1,7 +1,7 @@
 # SenseMS
 *****Private GitHub only available to C. Light*****
 
-Consulting project to show the effects of noise on a deep neural network used to classify multiple sclerosis. Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
+Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
 ![Model](img/downsampling.gif)
 
@@ -13,18 +13,15 @@ Consulting project to show the effects of noise on a deep neural network used to
 - **build** : Include scripts that automate building of a standalone environment
 - **static** : Any images or content to include in the README or web framework if part of the pipeline
 
-This repository contains a demo of a WaveRNN-based waveform generator trained
-on 13000 spoken sentences; inference can be run on CPU or GPU using the frozen
-graph.
+This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
 
-`run_wavernn.py` takes an input WAV file, applies an FFT to produce an 80-band
+`logistic_tests.py`, `RF_tests.py`, and `GB_tests.py` take an input WAV file, applies an FFT to produce an 80-band
 mel spectrogram, then uses the spectrogram to generate 16 kHz audio with a
 frozen WaveRNN model.
 
-`cudnn_gru.ipynb` demonstrates usage of the (poorly documented) CuDNN GRU cell
-in TensorFlow, and some of the tricks and workarounds needed to get the network
-up and running. See [this link](http://htmlpreview.github.io/?https://github.com/austinmoehle/wavernn/blob/master/cudnn_gru.html)
-for an HTML-rendered version.
+`build_datasets.py` take...
+
+`cudnn_gru.ipynb` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
 
 
 ## Setup
@@ -38,9 +35,6 @@ bash environment.sh
 - List all packages and software needed to build the environment
 - This could include cloud command line tools (i.e. gsutil), package managers (i.e. conda), etc.
 
-#### Dependencies
-
-- [Streamlit](streamlit.io)
 
 #### Installation
 To install the package above, please run:
