@@ -3,8 +3,8 @@
 
 Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
-![Model](img/downsampling.gif)
-![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)
+![Model](img/downsampling.gif){ width=50% }
+![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif){ width=50% }
 
 ## Motivation for this project format:
 - **Noise-DNN-And-Sensor-Efficacy** : Put all source code for production within structured directory
