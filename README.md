@@ -30,16 +30,6 @@ Create a virtualenv, activate then run
 pip install -r requirements.txt
 ```
 
-## Requisites
-
-- List all packages and software needed to build the environment
-- This could include cloud command line tools (i.e. gsutil), package managers (i.e. conda), etc.
-
-## Configs
-- We recommond using either .yaml or .txt for your config files, not .json
-- **DO NOT STORE CREDENTIALS IN THE CONFIG DIRECTORY!!**
-- If credentials are needed, use environment variables or HashiCorp's [Vault](https://www.vaultproject.io/)
-
 
 ## Test
 - Include instructions for how to run all tests after the software is installed
@@ -50,6 +40,7 @@ pip install -r requirements.txt
 # Step 2
 ```
 
+
 ## Run Inference
 - Include instructions on how to run inference
 - i.e. image classification on a single image for a CNN deep learning project
@@ -59,6 +50,7 @@ pip install -r requirements.txt
 # Step 1
 # Step 2
 ```
+
 
 ## Run
 If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
