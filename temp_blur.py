@@ -41,7 +41,6 @@ class DatasetAtFrequency:
 
         # only print this message once for the sake of output cleanliness
         if(trials[0].sub_ms == '1'):
-            print("Building datasets...")
             print("Freq: {}, Num. of data points to skip for downsampling: {}".format(self.freq, self.num_to_skip))
 
         for trace in range(len(xs)):

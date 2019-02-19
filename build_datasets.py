@@ -43,6 +43,7 @@ def make_datasets(freqs):
     full_dataset = [patient_trials, control_trials]
 
     ## Build datasets at specified frequencies by downsampling eye-traces
+    print("Building datasets...")
     for freq in freqs:
         data = DatasetAtFrequency(freq, full_dataset)
         new_datasets[freq] = data.get_new_data()

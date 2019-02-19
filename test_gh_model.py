@@ -89,106 +89,107 @@ for freq, data in new_datasets.items():
         config.gpu_options.allow_growth = True
 
         #num_sweeps = np.prod([len(val) for val in sweep_params.values()])
-        num_sweep = 1
-        keys, values = zip(*sweep_params.items())
-        for experiment_number, experiment in enumerate(itertools.product(*values)):
-            print("\n\n-------\nStarting experiment", experiment_number+1, " out of ", num_sweeps)
+        num_sweeps = 1
+        experiment_number = 1
+        #keys, values = zip(*sweep_params.items())
+        #for experiment_number, experiment in enumerate(itertools.product(*values)):
+        print("\n\n-------\nStarting experiment", experiment_number+1, " out of ", num_sweeps)
 
 ###### NOT NEC.??
-            ## Set new params for this experiment
-            #for key, value in zip(keys, experiment):
-            #    print(key, "is set to", value)
-            #    setattr(params, key, value)
+        ## Set new params for this experiment
+        #for key, value in zip(keys, experiment):
+        #    print(key, "is set to", value)
+        #    setattr(params, key, value)
 
-            dataset_group_list.reset_counters()
-            dataset_group_list.init_results()
+        dataset_group_list.reset_counters()
+        dataset_group_list.init_results()
 
-            ## Model selection
-            if model_type == "conv_mlp":
-                model = conv_mlp(params)
-            elif model_type == "fc_mlp":
-                model = fc_mlp(params)
-            elif model_type == "reg":
-                model = reg(params)
-            else:
-                assert False, ("model_type must be 'conv_mlp', 'fc_mlp', or 'reg'")
+        ## Model selection
+        if model_type == "conv_mlp":
+            model = conv_mlp(params)
+        elif model_type == "fc_mlp":
+            model = fc_mlp(params)
+        elif model_type == "reg":
+            model = reg(params)
+        else:
+            assert False, ("model_type must be 'conv_mlp', 'fc_mlp', or 'reg'")
 
-            ## Perform Monte Carlo Cross Validation (resample and train multiple times)
-            while dataset_group_list.crossvalids_completed < params.num_crossvalidations:
-                #get the dataset for this draw
-                data = dataset_group_list.get_dataset(dataset_group_list.crossvalids_completed)
+        ## Perform Monte Carlo Cross Validation (resample and train multiple times)
+        while dataset_group_list.crossvalids_completed < params.num_crossvalidations:
+            #get the dataset for this draw
+            data = dataset_group_list.get_dataset(dataset_group_list.crossvalids_completed)
 
-                print(f"Crossvalidation run {dataset_group_list.crossvalids_completed + 1} / {params.num_crossvalidations}")
-                sys.stdout.flush()
-                ## TODO: Store these in Dataset structure (don't want to create conflicts now)
-                pulls_max_acc = 0 #best validation accuracy
-                pulls_max_acc_sens = 0 #sensitivity at best val accuracy
-                pulls_max_acc_spec = 0 #specificty at best val accuracy
+            print(f"Crossvalidation run {dataset_group_list.crossvalids_completed + 1} / {params.num_crossvalidations}")
+            sys.stdout.flush()
+            ## TODO: Store these in Dataset structure (don't want to create conflicts now)
+            pulls_max_acc = 0 #best validation accuracy
+            pulls_max_acc_sens = 0 #sensitivity at best val accuracy
+            pulls_max_acc_spec = 0 #specificty at best val accuracy
 
-                ## New Session for each Draw
-                with tf.Session(config=config, graph=model.graph) as sess:
-                    ## Need to provide shape if batch_size is used in graph
-                    sess.run(model.init_op,
-                        feed_dict={model.x:np.zeros([params.batch_size]+params.data_shape,
-                        dtype=np.float32)})
-                    model.write_graph(sess.graph_def)
-                    sess.graph.finalize() # Graph is read-only after this statement
+            ## New Session for each Draw
+            with tf.Session(config=config, graph=model.graph) as sess:
+                ## Need to provide shape if batch_size is used in graph
+                sess.run(model.init_op,
+                    feed_dict={model.x:np.zeros([params.batch_size]+params.data_shape,
+                    dtype=np.float32)})
+                model.write_graph(sess.graph_def)
+                sess.graph.finalize() # Graph is read-only after this statement
 
-                    while data["train"].epochs_completed < params.num_epochs:
-                        data_batch = data["train"].next_batch(model.batch_size)
-                        #print("dataset as x",data_batch[0])
-                        feed_dict = {model.x:data_batch[0], model.y:data_batch[1]}
+                while data["train"].epochs_completed < params.num_epochs:
+                    data_batch = data["train"].next_batch(model.batch_size)
+                    #print("dataset as x",data_batch[0])
+                    feed_dict = {model.x:data_batch[0], model.y:data_batch[1]}
 
-                        ## Update weights
-                        sess.run(model.apply_grads, feed_dict)
+                    ## Update weights
+                    sess.run(model.apply_grads, feed_dict)
 
-                        if (data["train"].epochs_completed % params.val_frequency == 0
-                            and data["train"].batches_this_epoch==1):
+                    if (data["train"].epochs_completed % params.val_frequency == 0
+                        and data["train"].batches_this_epoch==1):
 
-                            global_step = sess.run(model.global_step)
-                            current_loss = sess.run(model.total_loss, feed_dict)
+                        global_step = sess.run(model.global_step)
+                        current_loss = sess.run(model.total_loss, feed_dict)
 
-                            weight_cp_filename, full_cp_filename = model.write_checkpoint(sess)
+                        weight_cp_filename, full_cp_filename = model.write_checkpoint(sess)
 
-                            with tf.Session(graph=model.graph) as tmp_sess:
-                                val_feed_dict = {model.x:data["val"].data, model.y:data["val"].labels}
-                                tmp_sess.run(model.init_op, val_feed_dict)
-                                cp_load_file = tf.train.latest_checkpoint(model.cp_save_dir,
-                                    model.cp_latest_filename+"_weights")
-                                model.load_weights(tmp_sess, cp_load_file)
-                                run_list = [model.merged_summaries, model.accuracy, model.sensitivity, model.specificity]
-                                summaries, val_accuracy, val_sensitivity, val_specificity = tmp_sess.run(run_list,
-                                    val_feed_dict)
-                                model.writer.add_summary(summaries, global_step)
+                        with tf.Session(graph=model.graph) as tmp_sess:
+                            val_feed_dict = {model.x:data["val"].data, model.y:data["val"].labels}
+                            tmp_sess.run(model.init_op, val_feed_dict)
+                            cp_load_file = tf.train.latest_checkpoint(model.cp_save_dir,
+                                model.cp_latest_filename+"_weights")
+                            model.load_weights(tmp_sess, cp_load_file)
+                            run_list = [model.merged_summaries, model.accuracy, model.sensitivity, model.specificity]
+                            summaries, val_accuracy, val_sensitivity, val_specificity = tmp_sess.run(run_list,
+                                val_feed_dict)
+                            model.writer.add_summary(summaries, global_step)
 
-                            with tf.Session(graph=model.graph) as tmp_sess:
-                                tr_feed_dict = {model.x:data["train"].data, model.y:data["train"].labels}
-                                tmp_sess.run(model.init_op, tr_feed_dict)
-                                cp_load_file = tf.train.latest_checkpoint(model.cp_save_dir,
-                                    model.cp_latest_filename+"_weights")
-                                model.weight_saver.restore(tmp_sess, cp_load_file)
-                                train_accuracy = tmp_sess.run(model.accuracy, tr_feed_dict)
+                        with tf.Session(graph=model.graph) as tmp_sess:
+                            tr_feed_dict = {model.x:data["train"].data, model.y:data["train"].labels}
+                            tmp_sess.run(model.init_op, tr_feed_dict)
+                            cp_load_file = tf.train.latest_checkpoint(model.cp_save_dir,
+                                model.cp_latest_filename+"_weights")
+                            model.weight_saver.restore(tmp_sess, cp_load_file)
+                            train_accuracy = tmp_sess.run(model.accuracy, tr_feed_dict)
 
-                            ## check for best accuracy
-                            ## TODO: Think about doing this more often to reduce likelyhood of missing best value
-                            if(pulls_max_acc < val_accuracy):
-                                pulls_max_acc = val_accuracy
-                                pulls_max_acc_sens = val_sensitivity
-                                pulls_max_acc_spec = val_specificity
+                        ## check for best accuracy
+                        ## TODO: Think about doing this more often to reduce likelyhood of missing best value
+                        if(pulls_max_acc < val_accuracy):
+                            pulls_max_acc = val_accuracy
+                            pulls_max_acc_sens = val_sensitivity
+                            pulls_max_acc_spec = val_specificity
 
-                            num_decimals = 5
-                            print("epoch:", str(data["train"].epochs_completed).zfill(3),
-                                 "\tbatch loss:", np.round(current_loss, decimals=num_decimals),
-                                 "\ttrain accuracy:", np.round(train_accuracy, decimals=num_decimals),
-                                 "\tval accuracy:", np.round(val_accuracy, decimals=num_decimals),
-                                 "\tval sensitivity:", np.round(val_sensitivity, decimals=num_decimals),
-                                 "\tval specificity:", np.round(val_specificity, decimals=num_decimals))
-                            sys.stdout.flush()
+                        num_decimals = 5
+                        print("epoch:", str(data["train"].epochs_completed).zfill(3),
+                             "\tbatch loss:", np.round(current_loss, decimals=num_decimals),
+                             "\ttrain accuracy:", np.round(train_accuracy, decimals=num_decimals),
+                             "\tval accuracy:", np.round(val_accuracy, decimals=num_decimals),
+                             "\tval sensitivity:", np.round(val_sensitivity, decimals=num_decimals),
+                             "\tval specificity:", np.round(val_specificity, decimals=num_decimals))
+                        sys.stdout.flush()
 
-                    ## Report results for this pull so we can calculate mean and sd for cross validation
-                    dataset_group_list.record_results(train_accuracy, val_accuracy, val_sensitivity, val_specificity,
-                                                      pulls_max_acc, pulls_max_acc_sens, pulls_max_acc_spec,
-                                                      dataset_group_list.crossvalids_completed)
+                ## Report results for this pull so we can calculate mean and sd for cross validation
+                dataset_group_list.record_results(train_accuracy, val_accuracy, val_sensitivity, val_specificity,
+                                                  pulls_max_acc, pulls_max_acc_sens, pulls_max_acc_spec,
+                                                  dataset_group_list.crossvalids_completed)
 
             ## Report Cross Validated Result
             # result is array trainacc,valacc,sens,spec, maxtracc, sensatmaxtracc, specatmaxtracc
