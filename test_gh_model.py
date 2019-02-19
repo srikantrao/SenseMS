@@ -88,7 +88,8 @@ for freq, data in new_datasets.items():
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
 
-        num_sweeps = np.prod([len(val) for val in sweep_params.values()])
+        #num_sweeps = np.prod([len(val) for val in sweep_params.values()])
+        num_sweep = 1
         keys, values = zip(*sweep_params.items())
         for experiment_number, experiment in enumerate(itertools.product(*values)):
             print("\n\n-------\nStarting experiment", experiment_number+1, " out of ", num_sweeps)

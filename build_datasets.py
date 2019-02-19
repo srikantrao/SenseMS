@@ -1,10 +1,8 @@
-#os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 import os
+from temp_blur import DatasetAtFrequency
 import utils.data_formatutils as dfu
 import utils.readinutils as readinutils
-#from utils.dataset import Dataset
-#from utils.dataset import DatasetGroup
-from temp_blur import DatasetAtFrequency
+
 
 ## Params
 from params.model_params import params as fc_mlp_params
