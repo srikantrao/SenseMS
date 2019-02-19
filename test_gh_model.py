@@ -84,7 +84,6 @@ for freq, data in new_datasets.items():
         params.data_shape = list(dataset_group_list.get_dataset(0)["train"].data.shape[1:])
 
         ## Training
-        print("Training on {} Hz data:".format(freq))
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
 
@@ -93,8 +92,9 @@ for freq, data in new_datasets.items():
         experiment_number = 1
         #keys, values = zip(*sweep_params.items())
         #for experiment_number, experiment in enumerate(itertools.product(*values)):
-        print("\n\n-------\nStarting experiment", experiment_number+1, " out of ", num_sweeps)
-
+        print("\n\n-------\n")
+        print("Training on {} Hz data:".format(freq))
+        print("Starting experiment", experiment_number, " out of ", num_sweeps)
 ###### NOT NEC.??
         ## Set new params for this experiment
         #for key, value in zip(keys, experiment):
@@ -196,7 +196,7 @@ for freq, data in new_datasets.items():
             xvald_means = dataset_group_list.mean_results()
             xvald_sds = dataset_group_list.sd_results()
             results[freq] = xvald_means
-            print("Cross Validation Completed!", freq, "Hz",
+            print("Cross Validation Completed for the", freq, "Hz dataset!",
                 "\nMean Final Train accuracy:", np.round(xvald_means[0], decimals=num_decimals), "(SD:",np.round(xvald_sds[0],decimals=num_decimals),")",
                 "\nMean Final Val accuracy:", np.round(xvald_means[1], decimals=num_decimals), "(SD:",np.round(xvald_sds[1],decimals=num_decimals),")",
                 "\nMean Final sensitivity:", np.round(xvald_means[2], decimals=num_decimals), "(SD:",np.round(xvald_sds[2],decimals=num_decimals),")",
