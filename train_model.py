@@ -87,19 +87,12 @@ for freq, data in new_datasets.items():
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
 
-        #num_sweeps = np.prod([len(val) for val in sweep_params.values()])
-        num_sweeps = 1
-        experiment_number = 1
-        #keys, values = zip(*sweep_params.items())
-        #for experiment_number, experiment in enumerate(itertools.product(*values)):
+        # For demonstaration purposes only, so no sweep 
+        num_sweeps, experiment_number = 1, 1
+
         print("\n\n-------\n")
         print("Training on {} Hz data:".format(freq))
         print("Starting experiment", experiment_number, " out of ", num_sweeps)
-###### NOT NEC.??
-        ## Set new params for this experiment
-        #for key, value in zip(keys, experiment):
-        #    print(key, "is set to", value)
-        #    setattr(params, key, value)
 
         dataset_group_list.reset_counters()
         dataset_group_list.init_results()
@@ -171,7 +164,6 @@ for freq, data in new_datasets.items():
                             train_accuracy = tmp_sess.run(model.accuracy, tr_feed_dict)
 
                         ## check for best accuracy
-                        ## TODO: Think about doing this more often to reduce likelyhood of missing best value
                         if(pulls_max_acc < val_accuracy):
                             pulls_max_acc = val_accuracy
                             pulls_max_acc_sens = val_sensitivity
