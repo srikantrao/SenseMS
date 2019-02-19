@@ -7,7 +7,7 @@ import utils.readinutils as readinutils
 from temp_blur import DatasetAtFrequency
 
 ## Params
-from params.fc_mlp_params import params as fc_mlp_params
+from params.model_params import params as fc_mlp_params
 
 """--------------------------------------
   Data path specification is done here:
