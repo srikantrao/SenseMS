@@ -1,4 +1,5 @@
 # Libraries
+import itertools
 import numpy as np
 import os
 import pickle as p
@@ -38,7 +39,7 @@ patientfile = './data/patient_stats.csv'
 
 """--------------------------------------
   Params sweeping options
---------------------------------------"""
+--------------------------------------
 sweep_params = dict()
 sweep_params["model_name"] = ["split_30_arch_60_40_30_20_10_2_5crossval"]
 sweep_params["weight_learning_rate"] = [0.006]
@@ -49,9 +50,9 @@ sweep_params["orth_mults"] = [[5.00001E-06, 5.00001E-06, 5.00001E-06, 5.00001E-0
 5.00001E-06]]
 sweep_params["do_batch_norm"] = [True]
 sweep_params["norm_decay_mult"] = [0.6] # dont need to sweep if we aren't using batch norm
-params.num_crossvalidations = 1
-"""--------------------------------------
+--------------------------------------
 --------------------------------------"""
+params.num_crossvalidations = 1
 
 # freqs for downsampling
 freqs = np.arange(8, 481, 8)
@@ -63,7 +64,6 @@ results = {}
 for freq, data in new_datasets.items():
     patient_trials = data[0]
     control_trials = data[1]
-    print("length of points in first patient trial", patient_trials[0].num_strips)
     if(len(patient_trials + control_trials) != 0):
         data, labels, stats = dfu.make_mlp_eyetrace_matrix(patient_trials, control_trials, params.fft_subsample)
         dataset_group_list = DatasetGroup(data, labels, stats, params)
@@ -83,11 +83,8 @@ for freq, data in new_datasets.items():
 
         params.data_shape = list(dataset_group_list.get_dataset(0)["train"].data.shape[1:])
 
-        print("Training on", dataset_group_list.get_dataset(0)["train"].data.shape[0], "data points.")
-        print("Validating on", dataset_group_list.get_dataset(0)["val"].data.shape[0], "data points.")
-        print(freq, "Hz")
-
         ## Training
+        print("Training on {} Hz data:".format(freq))
         config = tf.ConfigProto()
         config.gpu_options.allow_growth = True
 
@@ -96,10 +93,11 @@ for freq, data in new_datasets.items():
         for experiment_number, experiment in enumerate(itertools.product(*values)):
             print("\n\n-------\nStarting experiment", experiment_number+1, " out of ", num_sweeps)
 
+###### NOT NEC.??
             ## Set new params for this experiment
-            for key, value in zip(keys, experiment):
-                print(key, "is set to", value)
-                setattr(params, key, value)
+            #for key, value in zip(keys, experiment):
+            #    print(key, "is set to", value)
+            #    setattr(params, key, value)
 
             dataset_group_list.reset_counters()
             dataset_group_list.init_results()
