@@ -55,7 +55,7 @@ sweep_params["norm_decay_mult"] = [0.6] # dont need to sweep if we aren't using 
 params.num_crossvalidations = 1
 
 # freqs for downsampling
-freqs = np.arange(8, 481, 8)
+freqs = np.array([8, 30, 480])
 
 # build datasets
 new_datasets = build_datasets.make_datasets(freqs)
