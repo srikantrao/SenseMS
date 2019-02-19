@@ -18,7 +18,7 @@ from utils.dataset import DatasetGroup
 from models.fc_mlp import FC_MLP as fc_mlp
 
 ## Params
-from params.fc_mlp_params import params
+from params.model_params import params
 
 
 """--------------------------------------
