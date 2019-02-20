@@ -27,6 +27,22 @@ pip install -r requirements.txt
 ```
 
 
+## Dependencies
+Anaconda or Miniconda are required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
+```
+bash Miniconda3-latest-Linux-x86_64.sh
+bash Anaconda-latest-Linux-x86_64.sh
+```
+
+
+## Setup
+Create a conda environment called `sensorframerate`:
+```
+conda env create -f environment.yml
+conda activate sensorframerate
+```
+
+
 ## Test
 - Include instructions for how to run all tests after the software is installed
 ```
