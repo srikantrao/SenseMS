@@ -5,7 +5,7 @@ import utils.readinutils as readinutils
 
 
 ## Params
-from params.model_params import params as fc_mlp_params
+from params.model_params import params
 
 """--------------------------------------
   Data path specification is done here:
@@ -14,9 +14,6 @@ datadir = os.path.expanduser("~")+'/envision_working_traces/'
 patientfile = './data/patient_stats.csv'
 """--------------------------------------
 --------------------------------------"""
-
-## Param selection
-params = fc_mlp_params
 
 
 def make_datasets(freqs):
