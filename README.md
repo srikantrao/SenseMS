@@ -20,13 +20,6 @@ frozen WaveRNN model.
 `cudnn_gru.ipynb` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
 
 
-## Setup
-Create a virtualenv, activate then run
-```
-pip install -r requirements.txt
-```
-
-
 ## Dependencies
 Anaconda or Miniconda are required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
 ```
@@ -38,7 +31,7 @@ bash Anaconda-latest-Linux-x86_64.sh
 ## Setup
 Create a conda environment called `sensorframerate`:
 ```
-conda env create -f environment.yml
+conda env create -f build/environment.yml
 conda activate sensorframerate
 ```
 
