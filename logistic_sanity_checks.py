@@ -14,7 +14,7 @@ import utils.data_formatutils as dfu
 import utils.readinutils as readinutils
 from utils.dataset import Dataset
 from utils.dataset import DatasetGroup
-from temp_blur import DatasetAtFrequency
+from downsample import DatasetAtFrequency
 
 ## Models
 from models.conv_mlp import CONV_MLP as conv_mlp

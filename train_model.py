@@ -9,7 +9,7 @@ os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
 
 # Modules
 import build_datasets
-from temp_blur import DatasetAtFrequency
+from downsample import DatasetAtFrequency
 import utils.data_formatutils as dfu
 import utils.readinutils as readinutils
 from utils.dataset import Dataset
