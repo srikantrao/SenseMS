@@ -110,7 +110,7 @@ class DatasetAtFrequency:
         Returns:
             List of newly downsampled Eyetrace objects.
         """
-
+        
         new_eyetraces = []
         for i in range(len(xs)):
             if xs[i] != [0.0]:
@@ -127,9 +127,4 @@ class DatasetAtFrequency:
         return new_eyetraces
 
     def get_new_data(self):
-        """
-        Returns:
-            Two lists of downsampled Eyetrace objects in the form
-                     [patient_trials, control_trials]
-        """
         return [self.new_pat_data, self.new_cntr_data]
