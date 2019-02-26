@@ -1,7 +1,8 @@
-import os
+import os, sys
+sys.path.append('../')
 from temp_blur import DatasetAtFrequency
-import utils.data_formatutils as dfu
-import utils.readinutils as readinutils
+import data_formatutils as dfu
+import readinutils as readinutils
 
 
 # Params
