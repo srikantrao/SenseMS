@@ -38,7 +38,7 @@ bash Anaconda-latest-Linux-x86_64.sh
 ## Setup
 Create a conda environment called `sensorframerate`:
 ```
-conda env create -f environment.yml
+conda env create -f build.environment.yml
 conda activate sensorframerate
 ```
 
