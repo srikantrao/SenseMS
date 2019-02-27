@@ -13,7 +13,7 @@ This repository contains results from deep-dive into the classification accuracy
 
 `utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled Eyetrace objects at each of the specified frequencies using `utils/downsample.py`.
 
-`create_test_datasetgroups.py` takes the downsampled eye-traces and builds three
+`create_data_for_testing.py` takes the downsampled eye-traces and builds three
 dictionaries of training data, defined in `utils/datasets.py`, to be fed into
 the models representing:
 	- All data,
