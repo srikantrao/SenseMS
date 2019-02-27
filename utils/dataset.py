@@ -1,5 +1,5 @@
 import numpy as np
-import utils.data_formatutils as dfu
+import data_formatutils as dfu
 
 class Dataset(object):
     def __init__(self, data, lbls, stats, vectorize=False, rand_state=np.random.RandomState(None)):

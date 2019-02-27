@@ -11,13 +11,23 @@ I downsampled the eyetraces from 480 Hz down to 8 Hz to create new datasets for 
 
 This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
 
-`logistic_tests.py`, `RF_tests.py`, and `GB_tests.py` take an input WAV file, applies an FFT to produce an 80-band
-mel spectrogram, then uses the spectrogram to generate 16 kHz audio with a
-frozen WaveRNN model.
+`utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled Eyetrace objects at each of the specified frequencies using `utils/downsample.py`.
 
-`build_datasets.py` take...
+`create_test_datasetgroups.py` takes the downsampled eye-traces and builds three
+dictionaries of training data, defined in `utils/datasets.py`, to be fed into
+the models representing:
+	- All data,
+	- All data except Age, and
+	- Age only
 
-`cudnn_gru.ipynb` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
+`logistic_tests.py`, `RF_tests.py`, and `GB_tests.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
+
+`train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
+
+`process_results.py` takes the results of `train_model.py` and generates graphs stored in the `results` directory.
+
+`exploration.html` shows the exploration that resulted in data leakage findings.
+
 
 
 ## Dependencies

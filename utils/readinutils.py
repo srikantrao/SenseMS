@@ -3,7 +3,7 @@ import os
 from scipy.io import loadmat
 import numpy as np
 import pandas as pd
-import utils.eyetrace as eyetrace
+import eyetrace as eyetrace
 
 def read_n_filter(filename, subinfo):
     '''

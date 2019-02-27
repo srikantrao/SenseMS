@@ -2,7 +2,7 @@ import copy
 import numpy as np
 import pandas as pd
 from sklearn.decomposition import PCA
-import utils.eyetrace as eyetrace
+import eyetrace as eyetrace
 import scipy.signal as signal
 
 def make_twpca_eyetrace_matrix(pat_trial_list, con_trial_list):

@@ -1,9 +1,9 @@
-import os, sys
-sys.path.append('../')
-from temp_blur import DatasetAtFrequency
 import data_formatutils as dfu
+from downsample import DatasetAtFrequency
+import os
 import readinutils as readinutils
-
+import sys
+sys.path.append('../')
 
 # Params
 from params.model_params import params

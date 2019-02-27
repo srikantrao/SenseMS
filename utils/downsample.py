@@ -1,5 +1,5 @@
 import math
-import utils.eyetrace as eyetrace
+import eyetrace as eyetrace
 
 
 class DatasetAtFrequency:
