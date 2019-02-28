@@ -4,10 +4,10 @@
 Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
 
 
-
+<center>
 Eye-tracking time-series data *(x, y, t)*    |  Downsampled eye-traces
 :------------------------:|:-------------------:
-![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif)
+![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif) </center>
 
 This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
 
