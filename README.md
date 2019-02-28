@@ -38,9 +38,8 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 <br>
 
 ## Dependencies
-Anaconda or Miniconda are required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
+Anaconda is required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
 ```
-bash Miniconda3-latest-Linux-x86_64.sh
 bash Anaconda-latest-Linux-x86_64.sh
 ```
 
@@ -50,6 +49,7 @@ Create a conda environment called `sensorframerate`:
 ```
 conda env create -f build/environment.yml
 conda activate sensorframerate
+conda install -c anaconda py-xgboost
 ```
 
 ## Test
