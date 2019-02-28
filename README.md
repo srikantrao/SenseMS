@@ -25,7 +25,7 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 <br>
 </center>
 
-`LogisticRegr_test.py`, `GB_test.py`, `RF_test.py`, and `XGBoost_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
+`logisticregr_tests.py`, `gb_tests.py`, `rf_tests.py`, and `xgb_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
 <br>
 
 `train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
