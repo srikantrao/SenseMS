@@ -28,17 +28,18 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 </center>
 
 `LogisticRegr_test.py`, `GB_test.py`, `RF_test.py`, and `XGBoost_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
-
 <br>
+
 `train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
-
 <br>
+
 `process_results.py` takes the results of `train_model.py` and generates graphs stored in the `results` directory.
 
 <br>
-`exploration.html` shows the exploration that helped to identify data leakage.
 
+`exploration.html` shows the exploration that helped to identify data leakage.
 <br>
+
 ## Dependencies
 Anaconda or Miniconda are required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
 ```
@@ -46,7 +47,6 @@ bash Miniconda3-latest-Linux-x86_64.sh
 bash Anaconda-latest-Linux-x86_64.sh
 ```
 
-<br>
 ## Setup
 Create a conda environment called `sensorframerate`:
 
@@ -55,7 +55,6 @@ conda env create -f build/environment.yml
 conda activate sensorframerate
 ```
 
-<br>
 ## Test
 - Include instructions for how to run all tests after the software is installed
 
@@ -66,7 +65,6 @@ conda activate sensorframerate
 # Step 2
 ```
 
-<br>
 ## Run
 If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
 
