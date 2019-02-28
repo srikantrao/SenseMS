@@ -1,5 +1,5 @@
-import data_formatutils as dfu
-from dataset import DatasetGroup
+import utils.data_formatutils as dfu
+from utils.dataset import DatasetGroup
 import sys
 sys.path.append('../')
 
@@ -20,17 +20,19 @@ class ThreeDatasets:
         Args:
             new_datasets_dict: dictionary representing all eyetraces at
                                specified frequency in the form:
-                                {freq: [patient eyetraces, control eytraces]}
+                                {freq1: [patient eyetraces, control eytraces],
+                                 ...}
         Returns:
             Lists of dictionaries of DatasetGroup objects at each frequency,
             for each of the three testing conditions in the form:
                 [all data, all data but age, age only], and
-                 all data = {freq: [[X_train, y_train], [X_test, y_test]]}
+                 all data = {freq1: [[X_train, y_train], [X_test, y_test]],
+                             ...}
 
         """
         # create dictionary for all the data with keys as frequencies
         # and values being DatasetGroups to be fed to the models
-        all_data = {}
+        self.all_data = {}
         for freq, data in new_datasets_dict.items():
             patient_trials = data[0]
             control_trials = data[1]
@@ -48,10 +50,10 @@ class ThreeDatasets:
                             dataset_group_list.get_dataset(0)["train"].labels)
                 X_test, y_test = (dataset_group_list.get_dataset(0)["val"].data,
                             dataset_group_list.get_dataset(0)["val"].labels)
-                all_data[freq] = [[X_train, y_train[:,1]], [X_test, y_test[:,1]]]
+                self.all_data[freq] = [[X_train, y_train[:,1]], [X_test, y_test[:,1]]]
 
         # all data but age
-        all_but_age = {}
+        self.all_but_age = {}
         for freq, data in new_datasets_dict.items():
             patient_trials = data[0]
             control_trials = data[1]
@@ -69,10 +71,10 @@ class ThreeDatasets:
                             dataset_group_list.get_dataset(0)["train"].labels)
                 X_test, y_test = (dataset_group_list.get_dataset(0)["val"].data,
                             dataset_group_list.get_dataset(0)["val"].labels)
-                all_but_age[freq] = [[X_train, y_train[:,1]], [X_test, y_test[:,1]]]
+                self.all_but_age[freq] = [[X_train, y_train[:,1]], [X_test, y_test[:,1]]]
 
         # age only
-        age_only = {}
+        self.age_only = {}
         for freq, data in new_datasets_dict.items():
             patient_trials = data[0]
             control_trials = data[1]
@@ -85,7 +87,8 @@ class ThreeDatasets:
                             dataset_group_list.get_dataset(0)["train"].labels)
                 X_test, y_test = (dataset_group_list.get_dataset(0)["val"].data,
                             dataset_group_list.get_dataset(0)["val"].labels)
-                age_only[freq] = [[X_train[:,-1].reshape(-1,1), y_train[:,1]],
-                                  [X_test[:,-1].reshape(-1,1), y_test[:,1]]]
+                self.age_only[freq] = [[X_train[:,-1].reshape(-1,1), y_train[:,1]],
+                                       [X_test[:,-1].reshape(-1,1), y_test[:,1]]]
 
-        return [all_data, all_but_age, age_only]
+    def get_three_datasets(self):
+        return [self.all_data, self.all_but_age, self.age_only]

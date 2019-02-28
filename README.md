@@ -1,35 +1,42 @@
 # SenseMS
-*****Private GitHub only available to C. Light*****
+<br>
+***SenseMS*** was completed as an Insight Artifical Intelligence Fellow, consulting for a company that uses AI and eye-motion data to detect neurodegenerative diseases, like multiple sclerosis.
 
-Since this work was part of a private Insight fellowship project, the model structure and training code could not be open-sourced.
+By examining classification accuracy of a neural network on downsampled sensor data, I mimiced using cheaper hardware to help the company decide how to productionize their device. ***SenseMS*** helped the company move one step closer to going to market: a $15B opportunity. 
 
+<br>
 
-<center>
 Eye-tracking time-series data *(x, y, t)*    |  Downsampled eye-traces
 :------------------------:|:-------------------:
-![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif) </center>
+![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif)
 
-This repository contains results from deep-dive into the classification accuracy of the current model; inference can be run on GPU using the frozen graph.
 
-`utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled Eyetrace objects at each of the specified frequencies using `utils/downsample.py`.
+<br>
+`utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled eye-traces at each of the specified frequencies using `utils/downsample.py`.
 
-`utils/create_data_for_testing.py` takes the downsampled eye-traces and builds three
-dictionaries of training data, defined in `utils/datasets.py`, to be fed into
-the models representing:
-	- All data,
-	- All data except Age, and
-	- Age only
+<br>
+As EDA showed that almost all of the pre-built model's signal was strangely coming from age data, `utils/create_data_for_testing.py` takes the downsampled eye-traces and builds datasets for testing at each frequency, as defined in `utils/datasets.py`, representing:
+<center>
 
-`logistic_tests.py`, `RF_tests.py`, `XGBoost_tests.py`, `GB_tests.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
+	1. All data
+	2. All data except age
+	3. Age only
+<br>
+</center>
+`LogisticRegr_test.py`, `GB_test.py`, `RF_test.py`, and `XGBoost_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
 
+<br>
 `train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
 
+<br>
 `process_results.py` takes the results of `train_model.py` and generates graphs stored in the `results` directory.
 
+<br>
 `exploration.html` shows the exploration that helped to identify data leakage.
 
 
 
+<br>
 ## Dependencies
 Anaconda or Miniconda are required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
 ```
@@ -38,6 +45,7 @@ bash Anaconda-latest-Linux-x86_64.sh
 ```
 
 
+<br>
 ## Setup
 Create a conda environment called `sensorframerate`:
 ```
@@ -46,6 +54,7 @@ conda activate sensorframerate
 ```
 
 
+<br>
 ## Test
 - Include instructions for how to run all tests after the software is installed
 ```
@@ -56,6 +65,7 @@ conda activate sensorframerate
 ```
 
 
+<br>
 ## Run
 If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
 ```

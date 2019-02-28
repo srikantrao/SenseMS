@@ -3,7 +3,7 @@ import os
 from scipy.io import loadmat
 import numpy as np
 import pandas as pd
-import eyetrace as eyetrace
+import utils.eyetrace as eyetrace
 
 def read_n_filter(filename, subinfo):
     '''
@@ -24,7 +24,7 @@ def read_n_filter(filename, subinfo):
     yss = nfile['ymotion'][0]
     tss = nfile['timesecs'][0]
     vss = nfile['velocity'][0]
-    
+
     # blink info
     bts = nfile['blinktimes']
     bns = nfile['blinknum'][0]

@@ -1,5 +1,5 @@
 import numpy as np
-import data_formatutils as dfu
+import utils.data_formatutils as dfu
 
 class Dataset(object):
     def __init__(self, data, lbls, stats, vectorize=False, rand_state=np.random.RandomState(None)):
@@ -193,7 +193,7 @@ class DatasetGroup(object):
     def reset_counters(self):
         self.crossvalids_completed = 0
         self.reset_child_counters()
-    
+
     def reset_child_counters(self):
         for i in range(len(self.data_list)):
             self.data_list[i]['train'].reset_counters()
@@ -202,8 +202,8 @@ class DatasetGroup(object):
 
     def increment_counters(self):
         self.crossvalids_completed +=1
-    
-    def record_results(self, train_accuracy, val_accuracy, sensitivity, specificity, 
+
+    def record_results(self, train_accuracy, val_accuracy, sensitivity, specificity,
                        val_accuracy_max, sens_val_acc_max, spec_val_acc_max, idx):
         """ Record the results of a run"""
         self.train_accuracies[idx] = train_accuracy
@@ -225,7 +225,7 @@ class DatasetGroup(object):
         mean_maxacc = np.mean(self.max_val_accuracy)
         mean_sens_maxacc = np.mean(self.sens_at_max_acc)
         mean_spec_maxacc = np.mean(self.spec_at_max_acc)
-        return(mean_train_accuracies, mean_val_accuracies, 
+        return(mean_train_accuracies, mean_val_accuracies,
               mean_sensitivities, mean_specificities,
               mean_maxacc, mean_sens_maxacc, mean_spec_maxacc)
 
@@ -238,14 +238,14 @@ class DatasetGroup(object):
         sd_maxacc = np.std(self.max_val_accuracy)
         sd_sens_maxacc = np.std(self.sens_at_max_acc)
         sd_spec_maxacc = np.std(self.spec_at_max_acc)
-        return(sd_train_accuracies, sd_val_accuracies, 
+        return(sd_train_accuracies, sd_val_accuracies,
               sd_sensitivities, sd_specificities,
               sd_maxacc, sd_sens_maxacc, sd_spec_maxacc)
 
     def flip_trials_y(self):
         for dataset in self.data_list:
             dataset["train"].flip_trials_y()
-    
+
     def pca_whiten_reduce(self, explained_variance, rand_state):
         for index, dataset in enumerate(self.data_list):
             dataset["train"].pca_whiten_reduce(explained_variance, rand_state, pca=None)

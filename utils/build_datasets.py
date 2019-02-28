@@ -1,7 +1,7 @@
-import data_formatutils as dfu
-from downsample import DatasetAtFrequency
+import utils.data_formatutils as dfu
+from utils.downsample import DatasetAtFrequency
 import os
-import readinutils as readinutils
+import utils.readinutils as readinutils
 import sys
 sys.path.append('../')
 
