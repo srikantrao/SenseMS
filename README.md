@@ -11,11 +11,9 @@ By examining classification accuracy of a neural network on downsampled sensor d
 Eye-tracking time-series data *(x, y, t)*    |  Downsampled eye-traces
 :------------------------:|:-------------------:
 ![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif)
-
 <br>
 
 `utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled eye-traces at each of the specified frequencies using `utils/downsample.py`.
-
 <br>
 As EDA showed that almost all of the pre-built model's signal was strangely coming from age data, `utils/create_data_for_testing.py` takes the downsampled eye-traces and builds datasets for testing at each frequency, as defined in `utils/datasets.py`, representing:
 <center>
