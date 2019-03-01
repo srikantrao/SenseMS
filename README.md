@@ -62,13 +62,13 @@ python xgb_test.py
 - When first looking at the data I checked alternate models using the same data
 and found the following results:
 <p align="center">
-<img src="img/alternate_test_results.png" width="450"> 
+<img src="img/alternate_test_results.png" width="450">
 </p>
 <br>
 
 - But, when investigating how sensor frame-rate affects classification accuracy, my results were strange, namely that as frame-rate decreased, classification accuracy stayed surprisingly constant:
 <p align="center">
-<img src="img/all_data_accuracy.png" width="500"> 
+<img src="img/all_data_accuracy.png" width="500">
 </p>
 <br>
 
@@ -79,16 +79,16 @@ Eye motion data only   |  Age data only
 ![eye-traces only](img/eyetraces_only_accuracy.png) | ![age data only](img/age_only_accuracy.png)
 <br>
 
-- Could it be the NN architecture? I used logistic regression to compare as a sanity test and found surprisingly similar results:
+- Could it be the NN architecture? I used logistic regression to compare and found surprisingly similar results:
 <p align="center">
-<img src="img/logistic_regr_tests.png"> 
+<img src="img/logistic_regr_tests.png">
 </p>
 <br>
 
 - After determining that it wasn't the model giving the strange results, I looked at the data
 and found leakage that was drastically inflating the model's performance:'
 <p align="center">
-<img src="img/data_leakage.png" width="500"> 
+<img src="img/data_leakage.png" width="500">
 </p>
 <br>
 
