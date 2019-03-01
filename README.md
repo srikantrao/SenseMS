@@ -75,17 +75,21 @@ and found the following results:
 <br>
 
 - When investigating which features were causing this phenomenon, I found that eye data was giving surprisingly little signal and that age was accounting for nearly all of the signal:
+
 Eye motion data only   |  Age data only
 :------------------------:|:-------------------:
 ![eye-traces only](img/eyetraces_only_accuracy.png) | ![age data only](img/age_only_accuracy.png)
 <br>
 
 - Could it be the NN architecture? I used logistic regression to compare as a sanity test and found surprisingly similar results:
+<center>
 ![logistic test](img/logistic_regr_tests.png)
+</center>
 <br>
 
 - After determining that it wasn't the model giving the strange results, I looked at the data
 and found leakage that was drastically inflating the model's performance:
+
 Age distributions in the training data   |  Age distributions in the validation data
 :------------------------:|:-------------------:
 ![train](img/age_distr_train.png) | ![test](img/age_distr_test.png)
