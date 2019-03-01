@@ -34,7 +34,7 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 `train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
 <br>
 
-`process_results.py` takes the results of `train_model.py` and generates graphs stored in the `results` directory.
+`process_results.py` takes the results of `train_model.py` and generates plots stored in the `results` directory.
 <br>
 
 `exploration.html` shows the exploration that helped to identify data leakage.
