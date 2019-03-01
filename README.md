@@ -31,10 +31,7 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 `logisticregr_tests.py`, `gb_tests.py`, `rf_tests.py`, and `xgb_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
 <br>
 
-`train_model.py` demonstrates usage of the NN model as well as basic results from simpler ML models. These results also contain work verifying suspicions of data leakage in the pre-existing NN architecture.
-<br>
-
-`process_results.py` takes the results of `train_model.py` and generates plots stored in the `results` directory.
+`process_results.py` uses the results of `logisticregr_tests.py`, `gb_tests.py`, `rf_tests.py`, and `xgb_test.py` to generate plots stored in the `results` directory.
 <br>
 
 `exploration.html` shows the exploration that helped to identify data leakage.
@@ -67,7 +64,7 @@ python xgb_test.py
 ## Analysis
 - When first looking at the data I checked alternate models using the same data
 and found the following results:
-![Model](img/alternate_test_results.png)
+![Model](img/alternate_test_results.png | width=100)
 <br>
 
 - But, when investigating how sensor frame-rate affects classification accuracy, my results were strange, namely that as frame-rate decreased, classification accuracy stayed surprisingly constant:
