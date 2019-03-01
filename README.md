@@ -49,7 +49,7 @@ conda activate sensorframerate
 ```
 
 ## Test
-- After loading the conda environment, propogate the `data`, `models`, and `params` directories with the company's modules and run:
+- After loading the conda environment, propogate the `data`, `models`, and `params`, and `utils` directories with the company's modules and run:
 
 ```
 python logisticregr_tests.py &&
