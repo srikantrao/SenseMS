@@ -34,9 +34,6 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 `process_results.py` uses the results of `logisticregr_tests.py`, `gb_tests.py`, `rf_tests.py`, and `xgb_test.py` to generate plots stored in the `results` directory.
 <br>
 
-`exploration.html` shows the exploration that helped to identify data leakage.
-<br>
-
 ## Dependencies
 Anaconda is required. Download [here](https://conda.io/en/latest/miniconda.html) and install with:
 ```
@@ -64,11 +61,13 @@ python xgb_test.py
 ## Analysis
 - When first looking at the data I checked alternate models using the same data
 and found the following results:
-![Model](img/alternate_test_results.png | width=100)
+<center>
+<img src="img/alternate_test_results.png" width="450"> </center>
 <br>
 
 - But, when investigating how sensor frame-rate affects classification accuracy, my results were strange, namely that as frame-rate decreased, classification accuracy stayed surprisingly constant:
-![Model](img/all_data_accuracy.png)
+<center>
+<img src="img/all_data_accuracy.png" width="500"> </center>
 <br>
 
 - When investigating which features were causing this phenomenon, I found that eye data was giving surprisingly little signal and that age was accounting for nearly all of the signal:
@@ -80,12 +79,16 @@ Eye motion data only   |  Age data only
 
 - Could it be the NN architecture? I used logistic regression to compare as a sanity test and found surprisingly similar results:
 <center>
-![logistic test](img/logistic_regr_tests.png)
-</center>
+<img src="img/logistic_regr_tests.png"> </center>
 <br>
 
 - After determining that it wasn't the model giving the strange results, I looked at the data
-and found leakage that was drastically inflating the model's performance:
+and found leakage that was drastically inflating the model's performance:'
+<center>
+<img src="img/data_leakage.png" width="500"> </center>
+<br>
+
+- Finally, I investigated whether age was a feature that the model should be using as a central feature, but due to the distribution of the patient age data being rougly Gaussian while the control ages have so much kurtosis, I would recommend against using age as a central feature of the model.
 
 Age distributions in the training data   |  Age distributions in the validation data
 :------------------------:|:-------------------:
