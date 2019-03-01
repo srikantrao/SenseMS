@@ -49,7 +49,6 @@ Create a conda environment called `sensorframerate`:
 ```
 conda env create -f build/environment.yml
 conda activate sensorframerate
-conda install -c anaconda py-xgboost
 ```
 
 ## Test
