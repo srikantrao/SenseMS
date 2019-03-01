@@ -79,14 +79,14 @@ Eye motion data only   |  Age data only
 ![eye-traces only](img/eyetraces_only_accuracy.png) | ![age data only](img/age_only_accuracy.png)
 <br>
 
-- Could it be the NN architecture? I used logistic regression to compare and found surprisingly similar results:
+- Could it be the NN architecture? I used logistic regression to compare and found similar results:
 <p align="center">
 <img src="img/logistic_regr_tests.png">
 </p>
 <br>
 
 - After determining that it wasn't the model giving the strange results, I looked at the data
-and found leakage that was drastically inflating the model's performance:'
+and found leakage that was drastically inflating the model's performance:
 <p align="center">
 <img src="img/data_leakage.png" width="500">
 </p>
