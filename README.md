@@ -24,7 +24,7 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 
 	1. All data
 	2. All data except age
-	3. Age only 
+	3. Age only
 </center>
 <br>
 
@@ -65,10 +65,28 @@ python xgb_test.py
 ```
 
 ## Analysis
-- Include some form of EDA (exploratory data analysis)
-- And/or include benchmarking of the model and results
+- When first looking at the data I checked alternate models using the same data
+and found the following results:
+![Model](img/alternate_test_results.png)
+<br>
 
-```
-# Step 1
-# Step 2
-```
+- But, when investigating how sensor frame-rate affects classification accuracy, my results were strange, namely that as frame-rate decreased, classification accuracy stayed surprisingly constant:
+![Model](img/all_data_accuracy.png)
+<br>
+
+- When investigating which features were causing this phenomenon, I found that eye data was giving surprisingly little signal and that age was accounting for nearly all of the signal:
+Eye motion data only   |  Age data only
+:------------------------:|:-------------------:
+![eye-traces only](img/eyetraces_only_accuracy.png) | ![age data only](img/age_only_accuracy.png)
+<br>
+
+- Could it be the NN architecture? I used logistic regression to compare as a sanity test and found surprisingly similar results:
+![logistic test](img/logistic_regr_tests.png)
+<br>
+
+- After determining that it wasn't the model giving the strange results, I looked at the data
+and found leakage that was drastically inflating the model's performance:
+Age distributions in the training data   |  Age distributions in the validation data
+:------------------------:|:-------------------:
+![train](img/age_distr_train.png) | ![test](img/age_distr_test.png)
+<br>
