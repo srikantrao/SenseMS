@@ -13,6 +13,9 @@ Eye-tracking time-series data *(x, y, t)*    |  Downsampled eye-traces
 ![Eye-tracking](https://media.giphy.com/media/blle4NCmxmMne/giphy.gif)  |  ![Model](img/downsampling.gif)
 <br>
 
+Unfortunately, due to the highly sensitive nature of the data and model confidentiality, I am not able to open-source this project. This repository was created for the benefit of the company I consulted for to conduct future testing.
+<br>
+
 `utils/build_datasets.py` takes list of frequencies and returns dictionary of downsampled eye-traces at each of the specified frequencies using `utils/downsample.py`.
 <br>
 
@@ -52,20 +55,13 @@ conda activate sensorframerate
 ```
 
 ## Test
-- Include instructions for how to run all tests after the software is installed
+- After loading the conda environment, propogate the `data`, `models`, and `params` directories with the company's modules and run:
 
 ```
-# Example
-
-# Step 1
-# Step 2
-```
-
-## Run
-If you have a GPU, select sample input data and a simple model to replicate the process I used to create downsampled datasets.
-
-```
-python run_wavernn.py samples/LJ016-0277.wav
+python logisticregr_tests.py &&
+python gb_tests.py &&
+python rf_tests.py &&
+python xgb_test.py
 ```
 
 ## Analysis
@@ -73,8 +69,6 @@ python run_wavernn.py samples/LJ016-0277.wav
 - And/or include benchmarking of the model and results
 
 ```
-# Example
-
 # Step 1
 # Step 2
 ```
