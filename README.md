@@ -21,9 +21,9 @@ As EDA showed that almost all of the pre-built model's signal was strangely comi
 
 	1. All data
 	2. All data except age
-	3. Age only
+	3. Age only </center>
 <br>
-</center>
+
 `logisticregr_tests.py`, `gb_tests.py`, `rf_tests.py`, and `xgb_test.py` use the training data to return cross-validated accuracy scores for each model. These tests were used for sanity checks when the DNN was returning unusual results.
 <br>
 
